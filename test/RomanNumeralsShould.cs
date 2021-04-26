@@ -26,6 +26,7 @@ namespace test
         [TestCase(40, "XL")]
         [TestCase(9, "IX")]
         [TestCase(4, "IV")]
+        [TestCase(999, "CMXCIX")]
 
         public void ShouldReturnRomanGivenArabic(int input, string expected)
         {

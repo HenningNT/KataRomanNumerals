@@ -42,18 +42,20 @@ namespace src
             if (index >= Numbers.Count) return string.Empty;
 
             string result;
-
             var currentRadix = Numbers.Keys.ToArray()[index];
 
-            // Find number of occurrences
-            var count = input / currentRadix;
-            if (Specials.Any(special => input % special.Key == 0 && input / special.Key == 1))
+            if (Specials.Any(special => input / special.Key == 1 && special.Key > currentRadix))
             {
-                result = Specials.First(special => input % special.Key == 0).Value;
-                input -= Specials.First(special => input % special.Key == 0).Key;
+                result = Specials.First(special => input / special.Key == 1).Value;
+
+                // Subtract the bit we have processed
+                input -= Specials.First(special => input / special.Key == 1).Key;
             }
             else
             {
+
+                // Find number of occurrences
+                var count = input / currentRadix;
                 result = Numbers[currentRadix].Repeat(count);
                 // Subtract the bit we have processed
                 input -= currentRadix * count;
