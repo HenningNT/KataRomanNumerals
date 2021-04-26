@@ -8,8 +8,8 @@ namespace src
         readonly Dictionary<int, string> Numbers = new()
         {
             { 1000, "M" },
-            { 500, "C" },
-            { 100, "D" },
+            { 500, "D" },
+            { 100, "C" },
             { 50, "L" },
             { 10, "X" },
             { 5, "V" },
