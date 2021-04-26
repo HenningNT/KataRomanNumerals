@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace test
 {
-    public class Tests
+    public class RomanNumeralsShould
     {
         [SetUp]
         public void Setup()
@@ -10,9 +10,9 @@ namespace test
         }
 
         [Test]
-        public void Test1()
+        public void ShouldReturnRomanGivenArabic()
         {
-            Assert.Pass();
+            var numero = new RomanNumerals()
+            }
         }
     }
-}
