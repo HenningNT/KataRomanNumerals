@@ -27,8 +27,10 @@ namespace test
         [TestCase(9, "IX")]
         [TestCase(4, "IV")]
         [TestCase(999, "CMXCIX")]
+        [TestCase(3999, "MMMCMXCIX")]
+        [TestCase(949, "CMXLIX")] 
 
-        public void ShouldReturnRomanGivenArabic(int input, string expected)
+        public void ReturnRomanGivenArabic(int input, string expected)
         {
             var numero = new RomanNumerals();
 
@@ -38,3 +40,4 @@ namespace test
         }
     }
 }
+

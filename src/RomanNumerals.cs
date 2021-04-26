@@ -28,32 +28,26 @@ namespace src
 
         public string Convert(int input)
         {
-            if (Numbers.ContainsKey(input))
-                return Numbers[input];
+            string result;
 
-            return Converter(input, 0);
-        }
-
-        private string Converter(int input, int index)
-        {
+            // Have we reached the end?
             if (input == 0) return string.Empty;
 
-            // Have we reached the end on the dictionary?
-            if (index >= Numbers.Count) return string.Empty;
+            // Get current number in dictionary
+            var currentRadix = Numbers.First(num => num.Key <= input).Key;
 
-            string result;
-            var currentRadix = Numbers.Keys.ToArray()[index];
-
+            // Check if it is a special case
             if (Specials.Any(special => input / special.Key == 1 && special.Key > currentRadix))
             {
-                result = Specials.First(special => input / special.Key == 1).Value;
+                var SpecialCase = Specials.First(special => input / special.Key == 1 && special.Key > currentRadix);
+
+                result = SpecialCase.Value;
 
                 // Subtract the bit we have processed
-                input -= Specials.First(special => input / special.Key == 1).Key;
+                input -= SpecialCase.Key;
             }
             else
             {
-
                 // Find number of occurrences
                 var count = input / currentRadix;
                 result = Numbers[currentRadix].Repeat(count);
@@ -61,7 +55,7 @@ namespace src
                 input -= currentRadix * count;
             }
 
-            return result + Converter(input, index + 1);
+            return result + Convert(input);
         }
     }
 
